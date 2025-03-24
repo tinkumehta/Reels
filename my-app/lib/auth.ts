@@ -35,10 +35,11 @@ export const authOptions : NextAuthOptions = {
                     }
 
                     return {
-                        _id : user._id.toString(),
-                        email : user.email
+                        id : user._id.toString(),
+                        email : user.email,
                     }
                 } catch (error) {
+                    console.error("Auth error:",error)
                     throw error
                 }
             }
