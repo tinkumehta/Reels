@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import User from "@/models/User";
-import { error } from "console";
 
 export async function POST(request :NextRequest) {
     
@@ -39,7 +38,7 @@ export async function POST(request :NextRequest) {
     } catch (error) {
         return NextResponse.json(
             {error : "Falied to registerd user"},
-            {status : 400}
+            {status : 500}
         );
     }
 }

@@ -1,7 +1,6 @@
 import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import Video, { IVideo } from "@/models/Video";
-import { error } from "console";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -62,6 +61,7 @@ export async function POST(request : NextRequest) {
         return NextResponse.json(newVideo)
 
     } catch (error) {
+        console.error("Error creating video :", error);
         return NextResponse.json(
             {error : "Failed to fetch videos"},
             {status : 400}
