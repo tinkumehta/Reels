@@ -6,7 +6,7 @@ type FetchOptions = {
     method ? : "GET" | "POST" | "PUT" | "DELETE";
     body? : any ;
     headers? :Record<string, string>
-}
+};
 
 class ApiClient {
     private async fetch<T>(

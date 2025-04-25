@@ -1,4 +1,4 @@
-import Image from "next/image";
+import VideoFeed from "./components/VideoFeed";
 import { IVideo } from "@/models/Video";
 import { useEffect, useState } from "react";
 import { apiClient } from "@/lib/api-client";
@@ -15,13 +15,14 @@ export default function Home() {
       } catch (error) {
         console.error("Error fetching videos", error)
       }
-    }
+    };
 
-    fetchVideos()
+    fetchVideos();
   }, [])
   return (
-    <div>
-      <h1>Welcome</h1>
-    </div>
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8">ImageKit ReelsPro</h1>
+      <VideoFeed videos={videos} />
+    </main>
   );
 }

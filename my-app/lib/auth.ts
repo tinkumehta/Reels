@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDatabase } from "./db";
-import User from "@/models/User";
+import UserModel from "../models/User";
 import bcrypt from "bcryptjs";
 
 export const authOptions : NextAuthOptions = {
@@ -19,7 +19,7 @@ export const authOptions : NextAuthOptions = {
 
                 try {
                     await connectToDatabase()
-                    const user = User.findOne({email : credentials.email})
+                    const user = UserModel.findOne({email : credentials.email})
                     
                     if (!user) {
                         throw new Error("No user found")
@@ -37,7 +37,7 @@ export const authOptions : NextAuthOptions = {
                     return {
                         id : user._id.toString(),
                         email : user.email,
-                    }
+                    };
                 } catch (error) {
                     console.error("Auth error:",error)
                     throw error
@@ -71,4 +71,4 @@ export const authOptions : NextAuthOptions = {
         maxAge : 30 * 24 * 60 * 60
     },
     secret : process.env.NEXTAUTH_SECRET
-}
+};
